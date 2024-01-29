@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="sms:+911234567890" class="sms-link"> CALL US</a>
+    <script>
+        console.log('ran')
+        window.navigator.registerProtocolHandler(
+            "sms",
+            "http://127.0.0.1:5500/index.html?sms=%s",
+            "Sms Handler"
+        )
+
+        let element = document.getElementsByClassName('sms-link');
+        console.log(element);
+        for(let i=0; i<element.length; i++) {
+            element[i].addEventListener('click', function(event) {
+                console.log(this.href);
+                if (!navigator.canShare || !navigator.canShare({url: this.href})) {
+                    alert('Device does not have message sending capabilities!');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
