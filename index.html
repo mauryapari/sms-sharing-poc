@@ -7,6 +7,8 @@
 </head>
 <body>
     <a href="sms:+911234567890" class="sms-link"> CALL US</a>
+
+    <button></button>
     <script>
         console.log('ran')
         // window.navigator.registerProtocolHandler(
@@ -20,11 +22,30 @@
         for(let i=0; i<element.length; i++) {
             element[i].addEventListener('click', function(event) {
                 console.log(this.href);
-                if (!navigator.canShare || !navigator.canShare({url: this.href})) {
+                if (!navigator.contacts || (!navigator.canShare || !navigator.canShare({url: this.href}))) {
                     alert('Device does not have message sending capabilities!');
                 }
             });
         }
+    // const props = ["name", "email", "tel", "address", "icon"];
+    // const opts = { multiple: true };
+
+
+    // const handleResults = (contacts) => {
+    //     console.log('data is', contacts);
+    // } 
+
+    // async function getContacts() {
+    //     try {
+    //     const contacts = await navigator.contacts.select(props, opts);
+    //         handleResults(contacts);
+    //         console.log('==>',contacts)
+    //     } catch (ex) {
+    //     // Handle any errors here.
+    //     }
+    // }
+
+    // getContacts()
     </script>
 </body>
 </html>
