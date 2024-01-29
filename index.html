@@ -6,9 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="sms:+911234567890" class="sms-link"> CALL US</a>
+    Works on Android and Ios devices without any error message <br>
+    <a href="sms:+911234567890" id="smsLinkAndroid"> CALL US</a> <br>
+    <a href="sms:+911234567890" id="smsLinkIos"> CALL US</a><br>
+------------------------------------------------------------------------------------------------------------- <br>
+    Does not work and shows error message<br>
+    <a href="sms:+911234567890" id="smsLinkWindow"> CALL US</a><br>
 
-    <button></button>
+-------------------------------------------------------------------------------------------------------------<br>
+    Works and still shows error message<br>
+    <a href="sms:+911234567890" id="smsLinkMac"> CALL US </a><br>
+
     <script>
         console.log('ran')
         // window.navigator.registerProtocolHandler(
@@ -17,16 +25,32 @@
         //     "Sms Handler"
         // )
 
-        let element = document.getElementsByClassName('sms-link');
-        console.log(element);
-        for(let i=0; i<element.length; i++) {
-            element[i].addEventListener('click', function(event) {
-                console.log(this.href);
-                if ((!navigator.canShare || !navigator.canShare({url: this.href})) && !navigator.contacts && (!(/iPad|iPhone|iPod/.test(navigator.userAgent)) || navigator.platform.toUpperCase().indexOf('MAC') >=0)) {
-                    alert('Device does not have message sending capabilities!');
-                }
-            });
-        }
+        // let element1 = document.getElementById('smsLinkAll');
+        // element1.addEventListener('click', function(event) {
+        //     console.log(this.href);
+        //     if ((!navigator.canShare || !navigator.canShare({url: this.href})) && !navigator.contacts && (!(/iPad|iPhone|iPod/.test(navigator.userAgent)) || navigator.platform.toUpperCase().indexOf('MAC') >=0)) {
+        //         alert('Device does not have message sending capabilities!');
+        //     }
+        // });
+
+        let element2 = document.getElementById('smsLinkWindow');
+        element2.addEventListener('click', function(event) {
+            console.log(this.href);
+            if ((!navigator.canShare || !navigator.canShare({url: this.href})) && !navigator.contacts) {
+                alert('Device does not have message sending capabilities!');
+            }
+        });
+
+        // navigator Contacts does not work but is required to check for windows browser
+        let element3 = document.getElementById('smsLinkMac');
+        element3.addEventListener('click', function(event) {
+            console.log(this.href);
+            if ((!navigator.canShare || !navigator.canShare({url: this.href})) && !navigator.contacts && (!(/iPad|iPhone|iPod/.test(navigator.userAgent)) || navigator.platform.toUpperCase().indexOf('MAC') >=0)) {
+                alert('Device does not have message sending capabilities!');
+            }
+        });
+
+
     // const props = ["name", "email", "tel", "address", "icon"];
     // const opts = { multiple: true };
 
