@@ -22,7 +22,7 @@
         for(let i=0; i<element.length; i++) {
             element[i].addEventListener('click', function(event) {
                 console.log(this.href);
-                if ((!navigator.canShare || !navigator.canShare({url: this.href})) && !navigator.contacts && (!(/iPad|iPhone|iPod/.test(navigator.userAgent))) {
+                if ((!navigator.canShare || !navigator.canShare({url: this.href})) && !navigator.contacts && (!(/iPad|iPhone|iPod/.test(navigator.userAgent)))) {
                     alert('Device does not have message sending capabilities!');
                 }
             });
